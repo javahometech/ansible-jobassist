@@ -1,0 +1,15 @@
+---
+# tasks file for webservers
+ - name: Install Apahe server
+   yum: name="{{item}}" state='present'
+   with_items:
+      - httpd
+      - git
+ - name: Start and enable Apache
+   service: name='httpd' state='started' enabled='True'
+ - name: Deplloy Website
+   git:
+     repo: https://github.com/javahometech/javahome-app
+     dest: /var/www/html/
+   notify:
+     - Restart Apache  

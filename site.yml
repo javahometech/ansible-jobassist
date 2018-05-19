@@ -1,0 +1,9 @@
+---
+  - hosts: webservers
+    become: True
+    roles:
+      - webservers
+  - hosts: loadbalancer
+    become: True
+    roles:
+      - loadbalancer
